@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/", "dest": "api/main.py" },
+    { "src": "/index.html", "dest": "api/main.py" },
+    { "src": "/introduce.html", "dest": "api/main.py" },
+    { "src": "/vgo", "dest": "api/main.py" },
+    { "src": "/crude", "dest": "api/main.py" },
+    { "src": "/login.html", "dest": "api/main.py" },
+    { "src": "/select_plot/(.*)", "dest": "api/main.py" },
+    { "src": "/generate_plot", "dest": "api/main.py" },
+    { "src": "/table_list.html", "dest": "api/main.py" },
+    { "src": "/data_list/(.*)", "dest": "api/main.py" },
+    { "src": "/table_list/table/(.*)", "dest": "api/main.py" }
+  ]
+}
