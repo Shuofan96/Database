@@ -1,5 +1,6 @@
+from flask import Flask, render_template
 import os
-from flask import Flask, render_template, request, send_file
+from flask import request, send_file
 from sqlalchemy import create_engine, inspect, text
 import seaborn as sns
 import io
@@ -7,26 +8,18 @@ import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 
 # 加载 .env 文件中的环境变量
-# load_dotenv()
+load_dotenv()
 
 app = Flask(__name__,
-            template_folder='../templates',
-            static_folder='../statics',
-            static_url_path='/statics'
-            )
+    template_folder='../templates',
+    static_folder='../statics',
+)
 
 # 从环境变量读取数据库 URI
-#DATABASES = {
-#    'vgo_db_1': os.getenv('DATABASE_URL_VGO_DB_1'),
-#    'vgo_db_2': os.getenv('DATABASE_URL_VGO_DB_2'),
-#    'vgo_db_DSZ': os.getenv('DATABASE_URL_VGO_DB_DSZ')
-#}
-
-
 DATABASES = {
-    'vgo_db_1': 'mysql+mysqldb://root:Lishuofan961222.@localhost/vgo_db_1',
-    'vgo_db_2': 'mysql+mysqldb://root:Lishuofan961222.@localhost/vgo_db_2',
-    'vgo_db_DSZ': 'mysql+mysqldb://root:Lishuofan961222.@localhost/vgo_db_DSZ'
+    'vgo_db_1': os.getenv('DATABASE_URL_VGO_DB_1'),
+    'vgo_db_2': os.getenv('DATABASE_URL_VGO_DB_2'),
+    'vgo_db_DSZ': os.getenv('DATABASE_URL_VGO_DB_DSZ')
 }
 
 class DynamicService:
@@ -170,11 +163,8 @@ def crude_page():
 def login_page():
     return "Login Page"
 
-#  Flask 的处理函数 (Vercel 部署使用)
-def handler(event, context):
-    with app.app_context():
-        return app(event, context)
+
 # 本地运行时启用调试模式
-if __name__ == '__main__':
-#    print(f"Database connections: {DATABASES}")  # 输出用于调试
-    app.run(debug=True, port=9802)
+#if __name__ == '__main__':
+    # print(f"Database connections: {DATABASES}")  # 输出用于调试
+#    app.run(debug=True, port=9802)
