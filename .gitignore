@@ -1,0 +1,7 @@
+myenv
+myenv2
+__pycache__
+.vercel
+.env
+.DS_Store
+.env*.local
